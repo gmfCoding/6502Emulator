@@ -1,5 +1,6 @@
 #ifndef CMLE6502_EXTRA_H
 #define CMLE6502_EXTRA_H
+#define ERROR_CHECK(check) if (check != ERR_OK) return check;
 enum error_t
 {
     ERR_OK,
@@ -25,7 +26,7 @@ enum any_type
 
 struct any
 {
-    struct any_type type; 
+    enum any_type type; 
     union
     {
         uint16_t    u8;

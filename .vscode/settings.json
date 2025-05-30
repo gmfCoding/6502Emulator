@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "6502.h": "c",
+        "extra.h": "c",
+        "atomic": "c"
+    },
+    "C_Cpp.default.cStandard": "c23"
+}

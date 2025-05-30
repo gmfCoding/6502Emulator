@@ -1,8 +1,9 @@
 #ifndef CMLE6502_6502_H
 #define CMLE6502_6502_H
-#include <ctypes.h>
+#include <stdint.h>
+#include <stdbool.h>
 
-typedef error_t int;
+typedef int error_t;
 
 union pin8_t
 {
@@ -54,10 +55,11 @@ struct processor
     enum icUID ic_uid;
 };
 
+
 struct processor6502
 {
     struct processor base;
-    struct 
+    struct processor6502cpu
     {
         // Main register / Accumulator
         uint8_t a;
@@ -98,10 +100,17 @@ struct processor6502
 
     struct
     {
-        pin16_t addr;
-        pin8_t  data;
+        union pin16_t addr;
+        union pin8_t  data;
         bool    vcc;
     } pins;
+
+    struct processor6502metadata
+    {
+        uint64_t cycles;
+        uint64_t reads;
+        uint64_t writes;
+    } metadata;
 };
 
 error_t ic_power_on(struct processor* procbase);
